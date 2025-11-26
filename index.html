@@ -1,96 +1,163 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script defer src="/_vercel/insights/script.js"></script>
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css"
-    />
-    <title>Vercel HTML Starter</title>
-    <meta
-      name="description"
-      content="High-performance HTML based website template."
-    />
-  </head>
-  <body>
-    <h1>Vercel HTML Starter</h1>
-    <p>
-      This template is a simple, but powerful single
-      <code>index.html</code> file deployed to
-      <a href="https://vercel.com">Vercel</a>. When your site is deployed, all
-      static assets (like HTML, JavaScript, CSS, images, and more) are deployed
-      globally to every
-      <a href="https://vercel.com/docs/concepts/edge-network/overview"
-        >Vercel Edge Network</a
-      >
-      region.
-    </p>
-    <h2>Simple, privacy-friendly analytics</h2>
-    <p>
-      Want to understand your visitor traffic? Vercel Analytics gives you
-      first-party, privacy-friendly traffic analytics for your HTML site. This
-      template is already configured using the following script:
-    </p>
-    <pre><code>&lt;script defer src="/_vercel/insights/script.js"&gt;&lt;/script&gt;</code></pre>
-    <p>
-      Learn more about
-      <a href="https://vercel.com/analytics">Vercel Analytics</a>.
-    </p>
-    <h2>Integrated with git</h2>
-    <p>
-      Deploying updates to your site is as simple as
-      <code>git push</code> thanks to Vercel's advanced
-      <a href="https://vercel.com/docs/concepts/git">Git Integration</a>.
-      Support for GitHub, GitLab, Bitbucket is zero-configuration, and with the
-      flexible Vercel CLI and API, you can integrate with any tool possible.
-    </p>
-    <p>
-      Learn more about
-      <a href="https://vercel.com/docs/concepts/git">Git Integration</a>.
-    </p>
-    <h2>Fast <code>gzip</code> compression</h2>
-    <p>
-      To help ensure the smallest possible file sizes for your static assets,
-      the Vercel Edge Network compresses files by default using
-      <code>gzip</code>. You can also optionally use
-      <code>brotli</code> compressesion if you prefer.
-    </p>
-    <p>
-      Learn more about
-      <a href="https://vercel.com/docs/concepts/edge-network/compression"
-        >compression</a
-      >.
-    </p>
-    <h2>Advanced routing configuration</h2>
-    <p>
-      Vercel gives you a variety of ways to configure the routing of your
-      website. For example, adding redirects, rewrites, or headers to your page.
-      While you can use <code>vercel.json</code> to define these through JSON,
-      you can also express your routing configuration as code using
-      <a href="https://vercel.com/docs/concepts/functions/edge-middleware"
-        >Vercel Edge Middleware</a
-      >.
-    </p>
-    <p>
-      Middleware runs before the
-      <a href="https://vercel.com/docs/concepts/edge-network/caching"
-        >Vercel Edge Network Cache</a
-      >, so you can configure routing exactly as your application needs. For
-      example, this template uses <code>middleware.js</code> defined in the root
-      of the repository to add additional security headers to the site:
-    </p>
-    <pre><code>referrer-policy: origin-when-cross-origin
-strict-transport-security: max-age=31536000; includeSubDomains; preload
-x-content-type-options: nosniff
-x-dns-prefetch-control: on
-x-frame-options: DENY</code></pre>
-    <p>
-      Learn more about
-      <a href="https://vercel.com/docs/concepts/functions/edge-middleware"
-        >Vercel Edge Middleware</a
-      >.
-    </p>
-  </body>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>소방 사업 유형별 예산 및 사례수 현황</title>
+    <!-- Tailwind CSS CDN 로드 -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom styles for better infographic contrast and readability */
+        body { font-family: 'Inter', sans-serif; background-color: #f7fafc; }
+        .bar-wrapper { height: 1.5rem; }
+        /* Colors for the bar segments (using custom Tailwind config for fire theme) */
+        .new-bg { background-color: #ef4444; /* Red - New */ }
+        .cont-bg { background-color: #f59e0b; /* Amber - Continue */ }
+        .impr-bg { background-color: #10b981; /* Emerald - Improve */ }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'fire-red': '#cc0000',
+                        'fire-light': '#ffe0e0',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="p-4 sm:p-8">
+
+<div class="max-w-7xl mx-auto bg-white shadow-2xl rounded-xl p-6 md:p-10">
+
+    <h1 class="text-3xl md:text-4xl font-extrabold text-fire-red text-center border-b-4 border-fire-red pb-4 mb-8 rounded-t-xl">
+        🔥 소방 사업 유형별 현황 분석 (예산 및 사례수)
+    </h1>
+
+    <!-- Summary Box -->
+    <div id="summary" class="bg-fire-light p-5 rounded-lg mb-8 text-center shadow-inner">
+        <p class="text-xl font-semibold text-fire-red">
+            전체 사례수 합계: <span class="font-bold text-2xl">4,479</span>건
+        </p>
+        <p class="text-xl font-semibold text-fire-red mt-2">
+            전체 예산 합계: <span class="font-bold text-2xl">502,220,700</span>원
+        </p>
+    </div>
+
+    <!-- Legend -->
+    <div class="flex flex-wrap justify-center gap-4 text-sm font-medium mb-6">
+        <div class="flex items-center"><span class="w-4 h-4 rounded-full new-bg mr-2"></span> 신규사업</div>
+        <div class="flex items-center"><span class="w-4 h-4 rounded-full cont-bg mr-2"></span> 계속사업</div>
+        <div class="flex items-center"><span class="w-4 h-4 rounded-full impr-bg mr-2"></span> 기능개선</div>
+    </div>
+
+    <!-- Infographic Items Container -->
+    <div id="infographics-container" class="space-y-6">
+        <!-- Data items will be generated here -->
+    </div>
+
+</div>
+
+<script>
+    // 원본 데이터 (사례수: C, 금액: A)
+    const rawData = [
+        { type: "소방시설 점검 및 방화관리 용역", new_c: 74, new_a: 1165984, cont_c: 1718, cont_a: 29587826, impr_c: 493, impr_a: 62791 },
+        { type: "소방시설 신축 및 개선 공사", new_c: 142, new_a: 45339401, cont_c: 1984, cont_a: 43543614, impr_c: 127, impr_a: 4433800 },
+        { type: "경보설비 공사", new_c: 16, new_a: 1863894, cont_c: 34, cont_a: 393196, impr_c: 21, impr_a: 602260 },
+        { type: "소화설비 공사", new_c: 32, new_a: 4183396, cont_c: 62, cont_a: 4425259, impr_c: 7, impr_a: 16348321 },
+        { type: "제연설비 공사", new_c: 2, new_a: 18000, cont_c: 2, cont_a: 26800, impr_c: 2, impr_a: 23000 },
+        { type: "소방용품(경보기류) 구매", new_c: 46, new_a: 221588, cont_c: 139, cont_a: 1009311, impr_c: 58, impr_a: 219258 },
+        { type: "소방용품(소화기류) 구매", new_c: 105, new_a: 603793, cont_c: 206, cont_a: 1785621, impr_c: 7, impr_a: 1334490 },
+        { type: "소방용품(기계장치류) 구매", new_c: 14, new_a: 189790, cont_c: 42, cont_a: 124425, impr_c: 17, impr_a: 204688 },
+        { type: "소방용품(방염류) 구매", new_c: 3, new_a: 173507, cont_c: 7, cont_a: 6835, impr_c: 1, impr_a: 100000 },
+        { type: "소방기동장비 구매", new_c: 2, new_a: 268268338, cont_c: 47, cont_a: 118563852, impr_c: 1, impr_a: 508 },
+        { type: "소방정보통신장비 구매", new_c: 26, new_a: 10319773, cont_c: 35, cont_a: 9282994, impr_c: 6, impr_a: 565058 },
+        { type: "화재진압장비 구매", new_c: 105, new_a: 13298175, cont_c: 113, cont_a: 5671454, impr_c: 7, impr_a: 249545 },
+        { type: "구조장비 구매", new_c: 120, new_a: 12909738, cont_c: 138, cont_a: 28907424, impr_c: 7, impr_a: 21460 },
+        { type: "구급장비 구매", new_c: 105, new_a: 17317650, cont_c: 157, cont_a: 13224920, impr_c: 15, impr_a: 42217 },
+        { type: "소방용 측정장비 구매", new_c: 15, new_a: 438763, cont_c: 19, cont_a: 654968, impr_c: 2, impr_a: 6000 },
+        { type: "호흡보호장비 구매", new_c: 23, new_a: 17941423, cont_c: 65, cont_a: 26858632, impr_c: 8, impr_a: 336682 },
+        { type: "보조장비 구매", new_c: 40, new_a: 1478206, cont_c: 36, cont_a: 798863, impr_c: 1, impr_a: 5250 },
+        { type: "기타 소방장비 구매", new_c: 3, new_a: 911100, cont_c: 57, cont_a: 3769445, impr_c: 12, impr_a: 87414 }
+    ];
+
+    const container = document.getElementById('infographics-container');
+
+    function formatNumber(num) {
+        return num.toLocaleString('ko-KR');
+    }
+
+    rawData.forEach(item => {
+        const totalAmount = item.new_a + item.cont_a + item.impr_a;
+        const totalCase = item.new_c + item.cont_c + item.impr_c;
+
+        // Calculate percentages for the stacked bar
+        const new_p = (item.new_a / totalAmount) * 100 || 0;
+        const cont_p = (item.cont_a / totalAmount) * 100 || 0;
+        const impr_p = (item.impr_a / totalAmount) * 100 || 0;
+
+        // Build the HTML structure for one item
+        const itemHtml = `
+            <div class="bg-white border border-gray-200 rounded-lg p-5 shadow-md hover:shadow-lg transition duration-300">
+                
+                <!-- Category Title and Total Amount -->
+                <h3 class="text-lg font-bold text-gray-800 mb-2 border-b pb-1">
+                    ${item.type}
+                </h3>
+                <div class="flex justify-between items-center mb-4 text-sm md:text-base">
+                    <span class="font-semibold text-gray-600">총 예산: <span class="text-fire-red font-extrabold">${formatNumber(totalAmount)}원</span></span>
+                    <span class="font-semibold text-gray-600">총 사례수: <span class="text-blue-600 font-extrabold">${formatNumber(totalCase)}건</span></span>
+                </div>
+
+                <!-- Stacked Bar Chart (Budget Proportion) -->
+                <div class="mb-4">
+                    <p class="text-xs text-gray-500 mb-1">예산 구성 비율 (금액 기준)</p>
+                    <div class="bar-wrapper flex rounded-md overflow-hidden bg-gray-200">
+                        <!-- 신규사업 -->
+                        <div class="new-bg bar text-white text-xs flex items-center justify-end px-1" 
+                            style="width: ${new_p.toFixed(2)}%; min-width: ${new_p > 0 && new_p < 5 ? '5%' : '0'};" 
+                            title="신규사업: ${formatNumber(item.new_a)}원 (${new_p.toFixed(1)}%)">
+                            ${new_p >= 5 ? new_p.toFixed(1) + '%' : ''}
+                        </div>
+                        <!-- 계속사업 -->
+                        <div class="cont-bg bar text-white text-xs flex items-center justify-end px-1" 
+                            style="width: ${cont_p.toFixed(2)}%; min-width: ${cont_p > 0 && cont_p < 5 ? '5%' : '0'};" 
+                            title="계속사업: ${formatNumber(item.cont_a)}원 (${cont_p.toFixed(1)}%)">
+                            ${cont_p >= 5 ? cont_p.toFixed(1) + '%' : ''}
+                        </div>
+                        <!-- 기능개선 -->
+                        <div class="impr-bg bar text-white text-xs flex items-center justify-end px-1" 
+                            style="width: ${impr_p.toFixed(2)}%; min-width: ${impr_p > 0 && impr_p < 5 ? '5%' : '0'};" 
+                            title="기능개선: ${formatNumber(item.impr_a)}원 (${impr_p.toFixed(1)}%)">
+                            ${impr_p >= 5 ? impr_p.toFixed(1) + '%' : ''}
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Detailed Case Counts -->
+                <div class="grid grid-cols-3 gap-2 text-center text-sm pt-3 border-t">
+                    <div class="p-2 bg-red-50 rounded-md">
+                        <span class="font-semibold text-red-600">신규 사례</span>
+                        <div class="text-lg font-bold text-red-700">${formatNumber(item.new_c)}건</div>
+                    </div>
+                    <div class="p-2 bg-amber-50 rounded-md">
+                        <span class="font-semibold text-amber-600">계속 사례</span>
+                        <div class="text-lg font-bold text-amber-700">${formatNumber(item.cont_c)}건</div>
+                    </div>
+                    <div class="p-2 bg-emerald-50 rounded-md">
+                        <span class="font-semibold text-emerald-600">개선 사례</span>
+                        <div class="text-lg font-bold text-emerald-700">${formatNumber(item.impr_c)}건</div>
+                    </div>
+                </div>
+
+            </div>
+        `;
+
+        container.innerHTML += itemHtml;
+    });
+</script>
+
+</body>
 </html>
